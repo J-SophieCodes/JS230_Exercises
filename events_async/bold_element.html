@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Bold Element + Custom</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        function makeBold(element, callback) {
+          // element.style.fontWeight = 'bold';
+          let event = new CustomEvent("bolded");
+          element.addEventListener('bolded', e => e.target.style.fontWeight = 'bold');
+          element.dispatchEvent(event);
+
+          if (callback && typeof callback === 'function') {
+            callback(element);
+          }
+        }
+
+        let sectionElement = document.querySelector('section');
+        makeBold(sectionElement, elem => elem.classList.add('highlight'));
+      });
+
+
+      // solution
+      // const sectionElement = document.querySelector('section');
+
+      // function makeBold(element) {
+      //   element.style.fontWeight = 'bold';
+      //   const event = new CustomEvent('bolded');
+
+      //   element.dispatchEvent(event);
+      // }
+
+      // sectionElement.addEventListener('bolded', (event) => {
+      //   alert(event.target.tagName);
+      //   event.target.classList.add('highlight');
+      // });
+
+      // makeBold(sectionElement);
+    </script>
+  </head>
+  <body>
+    <section>Hello World</section>
+    <p>Greetings!</p>
+  </body>
+</html>

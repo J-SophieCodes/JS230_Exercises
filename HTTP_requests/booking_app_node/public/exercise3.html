@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>Exercise 3</title>
+    <style>
+     dl {
+         padding: 0.5em;
+     }
+     dt {
+         float: left;
+         clear: left;
+         width: 100px;
+         text-align: right;
+         font-weight: bold;
+         color: #f0595b;
+     }
+     dt::after {
+         content: ":";
+     }
+     dd {
+         margin: 0 0 0 110px;
+         padding: 0 0 0.5em 0;
+     }
+
+     input[type="submit"] {
+         display: inline-block;
+         margin-top: 15px;
+         color: #fff;
+         background: #f0595b;
+         border-color: #f0595b;
+         border-radius: 5px;
+         width: 100px;
+         height: 50px;
+     }
+
+     button {
+         display: inline-block;
+         margin-top: 15px;
+         color: #fff;
+         background: #5CAFDE;
+         border-color: #5CAFDE;
+         border-radius: 5px;
+         width: 100px;
+         height: 50px;
+     }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
+    <script src="javascripts/exercise3.js"></script>
+  </head>
+  <body>
+    <button id="btnAdd">Add more schedules</button>
+
+    <form method="post" action="/api/schedules">
+      <div id="schedules"></div>
+      <input id="btnSubmit" type="submit">
+    </form>
+
+    <script type="text/x-handlebars" id="schedule">
+      <fieldset>
+        <legend>Schedule {{set}}</legend>
+        <dl>
+          <dt>
+            <label for="staff_{{set}}">Staff Name</label>
+          </dt>
+          <dd>
+            <select name="staff_{{set}}">
+              {{#each staffs}}
+              {{> staff_option}}
+              {{/each}}
+            </select>
+          </dd>
+
+          <dt>
+            <label for="date_{{set}}">Date</label>
+          </dt>
+          <dd>
+            <input type="date" name="date_{{set}}">
+          </dd>
+
+          <dt>
+            <label for="time_{{set}}">Time</label>
+          </dt>
+          <dd>
+            <input type="time" name="time_{{set}}">
+          </dd>
+        </dl>
+      </fieldset>
+    </script>
+
+    <script type="text/x-handlebars" id="staff_option" class="partial">
+      <option value="{{id}}">{{name}}</option>
+    </script>
+  </body>
+</html>

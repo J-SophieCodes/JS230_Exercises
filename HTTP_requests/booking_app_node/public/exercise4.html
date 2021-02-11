@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>Exercise 4</title>
+    <style>
+      dl {
+        padding: 0.5em;
+      }
+      dt {
+        float: left;
+        clear: left;
+        width: 200px;
+        text-align: right;
+        font-weight: bold;
+        color: #f0595b;
+      }
+      dt::after {
+        content: ":";
+        margin: 5px;
+      }
+      dd {
+        margin: 0 0 0 110px;
+        padding: 0 0 0.5em 0;
+      }
+
+      input[type="submit"] {
+        display: inline-block;
+        color: #fff;
+        background: #f0595b;
+        border-color: #f0595b;
+        border-radius: 5px;
+        padding: 0 10px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
+    <script src="javascripts/exercise4.js"></script>
+  </head>
+  <body>
+    <form method="post" action="/api/bookings" id="bookingForm">
+      <fieldset>
+        <legend><h1>Schedules</h1></legend>
+        <dl>
+          <dt>
+            <label for="id">Please select one schedule</label>
+          </dt>
+          <dd>
+            <select name="id" id="schedule_selector"></select>
+          </dd>
+          <dt>
+            <label for="student_email">Email</label>
+          </dt>
+          <dd>
+            <input type="email" name="student_email"> 
+            <input id="btnSubmit" type="submit">
+          </dd>
+        </dl>
+
+        <div id="signupForm"></div>
+      </fieldset>
+    </form>
+
+    <script type="text/x-handlebars" id="options">
+      {{#each schedules}}
+      <option value="{{id}}">{{staff_name}} | {{date}} | {{time}}</option>
+      {{/each}}
+    </script>
+
+    <script type="text/x-handlebars" id="signup">
+      <fieldset>
+        <legend><h1>Please provide new student details</h1></legend>
+        <dl>
+          <dt>
+            <label for="email">Email</label>
+          </dt>
+          <dd>
+            <input type="email" name="email" value="{{email}}">
+          </dd>
+          <dt>
+            <label for="name">Name</label>
+          </dt>
+          <dd>
+            <input type="text" name="name">
+          </dd>
+          <dt>
+            <label for="booking_sequence">Booking Sequence</label>
+          </dt>
+          <dd>
+            <input type="text" name="booking_sequence" value="{{booking_sequence}}">
+          </dd>
+          <dd>
+            <input id="btnSignup" type="submit" formaction="/api/students">
+          </dd>
+        </dl>
+      </fieldset>
+    </script>
+  </body>
+</html>

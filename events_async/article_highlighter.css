@@ -1,0 +1,12 @@
+.highlight {
+  border: 1px dotted black;
+  background-color: rgb(255, 255, 205);
+}
+
+header li {
+  display: inline-block;
+}
+
+header ul {
+  padding: 0;
+}
